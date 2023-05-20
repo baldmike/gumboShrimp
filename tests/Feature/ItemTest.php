@@ -6,9 +6,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Item;
+use App\Models\User;
+use Laravel\Passport\Passport;
 
 class ItemTest extends TestCase
 {
+    use RefreshDatabase;
+    use WithFaker;
+
     public function testIndexRoute()
     {
         $response = $this->get('/api/items');
@@ -19,9 +24,6 @@ class ItemTest extends TestCase
     {
         // count records in db before adding
         $countBefore = Item::count();
-        
-        // this allows us past the auth on items POST route
-        $this->loginRandomAdmin();
 
         // create an item
         $item = factory(Item::class)->make();
@@ -35,9 +37,13 @@ class ItemTest extends TestCase
 
         $headers = [];
         $headers['Accept'] = 'application/json';
-        $headers['Authorization'] = 'Bearer ' . $this->token;
 
-        $response = $this->json('POST', '/api/items', $data, $headers);
+        Passport::actingAs(
+            $user = factory(User::class)->create(),
+            ['*']
+        );
+
+        $response = $this->json('POST', '/api/items', $data);
         $response->assertStatus(201);
         $this->assertStringContainsString('Item successfully created and persisted', $response->content());
 
