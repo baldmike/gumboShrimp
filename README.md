@@ -50,6 +50,7 @@ You'll need Docker Desktop running, and the app runs at localhost:8088
 ### Helpful Hints
 - `php artisan optimize` will get you out of some jams. You'll have to run it in your docker box, so `docker exec -it php php artisan optimize`
 - you could save having to type 'docker compose' every time, and just go into your docker box with `docker exec -it php sh` 
+- FOR FRONT END DEVELOPMENT!!!!!!  MAKE SURE YOU RUN `npm run watch` from within the container to compile your changes real time
 
 ## License
 
