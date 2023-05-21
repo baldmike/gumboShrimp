@@ -21,7 +21,7 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   * {
     font-family: "Staatliches", cursive;
   }
