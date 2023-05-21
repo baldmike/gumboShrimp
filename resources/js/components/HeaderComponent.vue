@@ -32,18 +32,21 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-image: url("/images/fruits.jpeg");
+    background-size: cover;
+    background-position: center;
   }
   
   .banner {
     font-size: 5rem;
-    color: #ff5500;
+    color: white;
     margin-bottom: 0;
-    font-family: "Staatliches", cursive;
+    font-family: "Staatliches";
   }
   
   .subtitle {
     font-size: 2rem;
-    color: #666666;
+    color: white;
   }
   </style>
   
