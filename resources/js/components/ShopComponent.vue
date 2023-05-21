@@ -15,48 +15,48 @@
       <br />
   
       <b-row id="card-body">
-        <b-col lg="3" md="4" sm="6" v-for="item in filteredItems" :key="item.id">
-          <b-card class="fadeIn" v-if="item.image" :img-src="item.image" img-alt="Item image" img-height="300" img-width="300" :title="item.item_name">
-            <b-row class="text-center">
-              <b-col>
-                <b-card-text style="font-size: .7em">{{ item.description }}</b-card-text>
+      <b-col lg="3" md="4" sm="6" v-for="item in filteredItems" :key="item.id">
+        <b-card class="fadeIn" v-if="item.image" :img-src="item.image" img-alt="Item image" img-height="300" img-width="300" :title="item.item_name">
+          <b-row class="text-center">
+            <b-col>
+              <b-card-text class="item-description">{{ item.description }}</b-card-text>
+            </b-col>
+          </b-row>
+
+          <b-row class="text-center bottom">
+            <b-col>
+              <b-card-text class="item-price">${{ item.price }}</b-card-text>
+            </b-col>
+
+            <b-col>
+              <b-card-text class="item-available">{{ item.number_available }}</b-card-text>
+            </b-col>
+          </b-row>
+
+          <b-card-footer>
+            <b-row>
+              <b-col v-if="isAuthenticated">
+                <b-button v-b-popover.hover.top="'Click here to edit item'" title="EDIT ITEM" @click.prevent="showUpdateItemModal(item)" class="btn btn-edit">
+                  <i class="far fa-edit"></i>
+                </b-button>
+              </b-col>
+
+              <b-col v-if="isAuthenticated">
+                <b-button v-b-popover.hover.top="'Click here to delete item. You cannot undo this.'" @click.prevent="deleteItem(item.id, item.item_name)" class="btn btn-delete">
+                  <i class="far fa-trash-alt"></i>
+                </b-button>
+              </b-col>
+
+              <b-col v-if="!isAuthenticated">
+                <b-button v-b-popover.hover.top="'Add to cart.'" :title="item.item_name" @click="addToCart(item)" class="btn btn-add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </b-button>
               </b-col>
             </b-row>
-  
-            <b-row class="text-center bottom">
-              <b-col>
-                <b-card-text>${{ item.price }}</b-card-text>
-              </b-col>
-  
-              <b-col>
-                <b-card-text>{{ item.number_available }}</b-card-text>
-              </b-col>
-            </b-row>
-  
-            <b-card-footer>
-              <b-row>
-                <b-col v-if="isAuthenticated">
-                  <b-button v-b-popover.hover.top="'Click here to edit item'" title="EDIT ITEM" @click.prevent="showUpdateItemModal(item)" class="btn" style="color: white;">
-                    <i class="far fa-edit"></i>
-                  </b-button>
-                </b-col>
-  
-                <b-col v-if="isAuthenticated">
-                  <b-button v-b-popover.hover.top="'Click here to delete item. You cannot undo this.'" @click.prevent="deleteItem(item.id, item.item_name)" class="btn" style="color: white;">
-                    <i class="far fa-trash-alt"></i>
-                  </b-button>
-                </b-col>
-  
-                <b-col v-if="!isAuthenticated">
-                  <b-button v-b-popover.hover.top="'Add to cart.'" :title="item.item_name" @click="addToCart(item)" class="btn" style="color: white;">
-                    <i class="fas fa-shopping-cart"></i>
-                  </b-button>
-                </b-col>
-              </b-row>
-            </b-card-footer>
-          </b-card>
-        </b-col>
-      </b-row>
+          </b-card-footer>
+        </b-card>
+      </b-col>
+    </b-row>
   
       <!-- View update Item Modal -->
       <b-modal id="editModal" hide-footer no-close-on-backdrop>
@@ -282,7 +282,7 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   .container-box {
     background-color: white;
     margin-top: 2em;
@@ -326,5 +326,35 @@
     height: 300px !important;
     padding: 1.25rem;
   }
+
+  .item-description {
+  font-size: 0.7em;
+}
+
+.item-price {
+  font-weight: bold;
+}
+
+.item-available {
+  color: #888;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-add-to-cart {
+  color: white;
+}
+
+.btn-edit {
+  background-color: #3498db;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+}
+
+.btn-add-to-cart {
+  background-color: #27ae60;
+}
   </style>
   
