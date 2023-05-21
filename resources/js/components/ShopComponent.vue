@@ -25,11 +25,11 @@
 
           <b-row class="text-center bottom">
             <b-col>
-              <b-card-text class="item-price">${{ item.price }}</b-card-text>
+              <b-card-text v-b-popover.hover.top="'Item Price'" class="item-price">${{ item.price }}</b-card-text>
             </b-col>
 
             <b-col>
-              <b-card-text class="item-available">{{ item.number_available }}</b-card-text>
+              <b-card-text v-b-popover.hover.top="'Number Available'" class="item-available">{{ item.number_available }}</b-card-text>
             </b-col>
           </b-row>
 
