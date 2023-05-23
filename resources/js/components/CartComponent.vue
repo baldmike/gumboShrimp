@@ -109,7 +109,7 @@
   }
   
   img {
-    max-height: 50px;
+    max-height: 200px;
   }
   </style>
   
