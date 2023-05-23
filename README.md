@@ -34,7 +34,7 @@ You'll need Docker Desktop running, and the app runs at localhost:8088
     - `docker compose exec php php artisan migrate`
     - `docker compose exec php php artisan db:seed`
     - `docker compose exec php php artisan passport:install`
-        - ** Add one of the returned Client IDs and Secrets to your `.env` for `PASSPORT_CLIENT_ID` & `PASSPORT_CLIENT_SECRET` **
+        - ** Add the second of the returned Client IDs and Secrets to your `.env` for `PASSPORT_CLIENT_ID` & `PASSPORT_CLIENT_SECRET` **
     ##### this will give you an admin user `admin@example.com` with the password `password`
 7. Make a new symbolic link for the uploaded images
     - get into your container `docker compose exec -it php sh`
